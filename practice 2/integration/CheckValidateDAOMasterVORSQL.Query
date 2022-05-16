@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqls>
+	<querys>
+		<query name="CheckValidateDAOMasterVORSQL">
+			<desc><![CDATA[Select]]></desc>
+			<sql><![CDATA[
+SELECT 
+	INTG_CD_ID
+FROM COM_INTG_CD			]]></sql>
+			<params>
+			</params>
+		</query>
+	</querys>
+</sqls>
