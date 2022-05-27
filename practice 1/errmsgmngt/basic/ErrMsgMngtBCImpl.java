@@ -69,7 +69,7 @@ public class ErrMsgMngtBCImpl extends BasicCommandSupport implements ErrMsgMngtB
 	 * @return List<ErrMsgVO>
 	 * @exception EventException
 	 */
-	public List<ErrMsgVO> SearchErrMsgVO(ErrMsgVO errMsgVO) throws EventException {
+	public List<ErrMsgVO> searchErrMsgVO(ErrMsgVO errMsgVO) throws EventException {
 		//	declare a try-catch block function for exception handling	
 		try {
 			//	return list data ErrMsgVO
@@ -90,7 +90,7 @@ public class ErrMsgMngtBCImpl extends BasicCommandSupport implements ErrMsgMngtB
 	 * @param account SignOnUserAccount
 	 * @exception EventException
 	 */
-	public void ManageErrMsgVO(ErrMsgVO[] errMsgVO, SignOnUserAccount account) throws EventException{
+	public void manageErrMsgVO(ErrMsgVO[] errMsgVO, SignOnUserAccount account) throws EventException{
 		//	declare a try-catch block function for exception handling
 		try {
 			// storage list ErrMsgVO to insert
