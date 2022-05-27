@@ -28,14 +28,14 @@ import com.clt.apps.opus.esm.clv.practice1.errmsgmngt.vo.ErrMsgVO;
 public class ErrMsgMngtBCImpl extends BasicCommandSupport implements ErrMsgMngtBC {
 
 	// Database Access Object
-	private transient ErrMsgMngtDBDAO dbDao = null;
+	private transient errMsgMngtDBDAO dbDao = null;
 
 	//	function declaration
-	public ErrMsgMngtBCImpl() {
+	public errMsgMngtBCImpl() {
 		dbDao = new ErrMsgMngtDBDAO();
 	}
 	//	defines the function used to search
-	public List<ErrMsgVO> SearchErrMsgVO(ErrMsgVO errMsgVO) throws EventException {
+	public List<ErrMsgVO> searchErrMsgVO(ErrMsgVO errMsgVO) throws EventException {
 		//	declare a try-catch block function for exception handling	
 		try {
 			//	return list data ErrMsgVO
@@ -50,7 +50,7 @@ public class ErrMsgMngtBCImpl extends BasicCommandSupport implements ErrMsgMngtB
 		
 	}
 	// 	defines the function used to manage: C, U, D	
-	public void ManageErrMsgVO(ErrMsgVO[] errMsgVO, SignOnUserAccount account) throws EventException{
+	public void manageErrMsgVO(ErrMsgVO[] errMsgVO, SignOnUserAccount account) throws EventException{
 		//	declare a try-catch block function for exception handling
 		try {
 			//	declare and create lists containing elements
