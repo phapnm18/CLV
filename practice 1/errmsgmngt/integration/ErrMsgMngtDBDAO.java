@@ -43,7 +43,7 @@ public class ErrMsgMngtDBDAO extends DBDAOSupport {
 	 */
 	 @SuppressWarnings("unchecked")
 	 //	 declare function searchErrMsgVO
-	public List<ErrMsgVO> SearchErrMsgVO(ErrMsgVO errMsgVO) throws DAOException {
+	public List<ErrMsgVO> searchErrMsgVO(ErrMsgVO errMsgVO) throws DAOException {
 		//	assign the default value of null to 2 variables
 		DBRowSet dbRowset = null;
 		List<ErrMsgVO> list = null;
