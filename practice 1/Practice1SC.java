@@ -89,7 +89,7 @@ public class Practice1SC extends ServiceCommandSupport {
 	 * @return EventResponse
 	 * @exception EventException
 	 */
-	private EventResponse SearchErrMsgVO(Event e) throws EventException {
+	private EventResponse searchErrMsgVO(Event e) throws EventException {
 		// PDTO(Data Transfer Object including Parameters)
 		GeneralEventResponse eventResponse = new GeneralEventResponse();
 		Practice1Event event = (Practice1Event)e;
@@ -112,7 +112,7 @@ public class Practice1SC extends ServiceCommandSupport {
 	 * @return EventResponse
 	 * @exception EventException
 	 */
-	private EventResponse ManageErrMsgVO(Event e) throws EventException {
+	private EventResponse manageErrMsgVO(Event e) throws EventException {
 		// PDTO(Data Transfer Object including Parameters)
 		GeneralEventResponse eventResponse = new GeneralEventResponse();
 		Practice1Event event = (Practice1Event)e;
