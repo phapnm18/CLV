@@ -25,7 +25,7 @@ import com.clt.apps.opus.esm.clv.practice1.errmsgmngt.vo.ErrMsgVO;
  * @since J2EE 1.6
  */
 
-public interface errMsgMngtBC {
+public interface ErrMsgMngtBC {
 
 	/**
 	* [Act] for [Business Target].<br>
@@ -33,7 +33,7 @@ public interface errMsgMngtBC {
 	* @return List<ErrMsgVO>
 	* @exception EventException
 	*/
-	public List<ErrMsgVO> searchErrMsgVO(ErrMsgVO errMsgVO) throws EventException;
+	public List<ErrMsgVO> SearchErrMsgVO(ErrMsgVO errMsgVO) throws EventException;
 	
 	/**
 	* [Act] for [Business Target].<br>
@@ -41,5 +41,5 @@ public interface errMsgMngtBC {
 	* @param account SignOnUserAccount
 	* @exception EventException
 	 */
-	public void manageErrMsgVO(ErrMsgVO[] errMsgVO,SignOnUserAccount account) throws EventException;
+	public void ManageErrMsgVO(ErrMsgVO[] errMsgVO,SignOnUserAccount account) throws EventException;
 }

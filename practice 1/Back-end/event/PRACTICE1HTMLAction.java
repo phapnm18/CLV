@@ -64,7 +64,6 @@ public class PRACTICE1HTMLAction extends HTMLActionSupport {
 		//	check if the command belongs to SEARCH or not
 		else if(command.isCommand(FormCommand.SEARCH)) {
 			//	request object from class and assign the value
-			event.setErrMsgVO((ErrMsgVO)getVO(request, ErrMsgVO .class));
 			ErrMsgVO errVO = new ErrMsgVO();	
 			//	assign values after taking parameter values associated with objects
 			errVO.setErrMsgCd(JSPUtil.getParameter(request, "s_err_msg_cd",""));

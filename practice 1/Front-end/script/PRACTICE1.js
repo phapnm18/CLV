@@ -78,8 +78,7 @@ function processButtonClick() {
 			ComShowMessage(e.message);
 		}
 	}
-	
-	
+
 }
 // function loadPage 
 function loadPage(){
@@ -106,39 +105,42 @@ function initSheet(sheetObj,sheetNo) {
 			//	initialize the variable that counts titles
 			var headCount = ComCountHeadTitle(HeadTitle);
 			// (headCount, 0, 0, true);
-			/** configure how to fetch initialized sheet, location of frozen rows or
-				columns and other basic configurations.
-				*	Configure search mode (Default: 2)
-				*	MergeSheet: Merge type (Default=0)
-				*	Page: Number of rows to display in one page(Default=20)
-				*	DataRowMerge: Whether to allow horizontal merge of the entire row (Default=0)
-				**/
-			SetConfig({SearchMode : 2, MergeSheet : 5, Page : 20, DataRowMerge : 0});
-			//	sort : allows to sort columns in order
-			//	colmove: move and drop data columns
-			//	headercheck: headercheck: check the headers of the columns
-			//	colresize: allow expanding and shrinking data columns
+				/** configure how to fetch initialized sheet, location of frozen rows or
+				 *	columns and other basic configurations.
+				 *	Configure search mode (Default: 2)
+				 *	MergeSheet: Merge type (Default=0)
+				 *	Page: Number of rows to display in one page(Default=20)
+				 *	DataRowMerge: Whether to allow horizontal merge of the entire row (Default=0)
+				 **/
+			SetConfig({SearchMode : 2, MergeSheet : 5, Page : 20 , DataRowMerge : 1});
+				/**	sort : allows to sort columns in order
+				 *	colmove: move and drop data columns
+				 *	headercheck: headercheck: check the headers of the columns
+				 *	colresize: allow expanding and shrinking data columns
+				 **/
 			var info = {Sort : 1, ColMove : 1, HeaderCheck : 0, ColResize : 1};
 			//	alignment for titles
 			var headers = [ { Text : HeadTitle, Align : "Center" }];
 			InitHeaders(headers, info);
-			//	format the columns in the table
-			//	type: data type of the table
-			//	hidden: allows to hide columns or not
-			//	width: the width of the column
-			//	align: align text
-			//	savename: the name saved in the db
-			//	updateedit,insertedit: enable to update or insert
-			//	combotext: displayed when a combo is released
-			//	combocode: displayed after click on combobox
+				/**
+				 *	format the columns in the table
+				 *	type: data type of the table
+				 *	hidden: allows to hide columns or not
+				 *	width: the width of the column
+				 *	align: align text
+				 *	savename: the name saved in the db
+				 *	updateedit,insertedit: enable to update or insert
+				 *	combotext: displayed when a combo is released
+				 *	combocode: displayed after click on combobox
+				 **/
 			var cols = [ 
-	             { Type : "Status", Hidden : 1, Width : 50, Align : "Center", ColMerge : 0, SaveName : "ibflag" }, 
-	             { Type : "DelCheck", Hidden : 0, Width : 50, Align : "Center", ColMerge : 0, SaveName : "del_chk" }, 
-	             { Type : "Text", Hidden : 0, Width : 100, Align : "Center", ColMerge : 0, SaveName : "err_msg_cd", KeyField : 1, Format : "", UpdateEdit : 0,InsertEdit : 1}, 
-	             { Type : "Combo", Hidden : 0, Width : 100, Align : "Center", ColMerge : 0, SaveName : "err_tp_cd", KeyField : 1, Format : "", UpdateEdit : 1, InsertEdit : 1,ComboText:"Server|UI|Both" ,ComboCode:"S|U|B",}, 
-	             { Type : "Combo", Hidden : 0, Width : 100, Align : "Center", ColMerge : 0, SaveName : "err_lvl_cd", KeyField : 1, Format : "", UpdateEdit : 1, InsertEdit : 1, ComboText:"WARNING|ERR|INFO" ,ComboCode:"E|W|I",}, 
-	             { Type : "Text", Hidden : 0, Width : 600, Align : "Left", ColMerge : 0, SaveName : "err_msg", KeyField : 1, Format : "", UpdateEdit : 1, InsertEdit : 1 }, 
-	             { Type : "Text", Hidden : 0, Width : 100, Align : "Left", ColMerge : 0, SaveName : "err_desc", KeyField : 1, Format : "", UpdateEdit : 1, InsertEdit : 1} 
+	             { Type : "Status",   Hidden : 1, Width : 50,  Align : "Center", ColMerge : 0, SaveName : "ibflag" }, 
+	             { Type : "DelCheck", Hidden : 0, Width : 50,  Align : "Center", ColMerge : 0, SaveName : "del_chk" }, 
+	             { Type : "Text", 	  Hidden : 0, Width : 100, Align : "Center", ColMerge : 0, SaveName : "err_msg_cd", KeyField : 1, Format : "", UpdateEdit : 0, InsertEdit : 1}, 
+	             { Type : "Combo", 	  Hidden : 0, Width : 100, Align : "Center", ColMerge : 0, SaveName : "err_tp_cd",  KeyField : 1, Format : "", UpdateEdit : 1, InsertEdit : 1, ComboText:"Server|UI|Both" ,  ComboCode:"S|U|B",}, 
+	             { Type : "Combo",    Hidden : 0, Width : 100, Align : "Center", ColMerge : 0, SaveName : "err_lvl_cd", KeyField : 1, Format : "", UpdateEdit : 1, InsertEdit : 1, ComboText:"WARNING|ERR|INFO" ,ComboCode:"E|W|I",}, 
+	             { Type : "Text",     Hidden : 0, Width : 600, Align : "Left",   ColMerge : 0, SaveName : "err_msg", 	KeyField : 1, Format : "", UpdateEdit : 1, InsertEdit : 1 }, 
+	             { Type : "Text",     Hidden : 0, Width : 100, Align : "Left",   ColMerge : 0, SaveName : "err_desc", 	KeyField : 1, Format : "", UpdateEdit : 1, InsertEdit : 1} 
 	             ];
 			//	define properties of a particular cell from default column property sets.
 			InitColumns(cols);
@@ -174,6 +176,7 @@ function doActionIBSheet(sheetObj,formObj,sAction) {
 		sheetObj.DoSearch("Practice1GS.do", FormQueryString(formObj) );
 		break;
 	case IBSAVE: // retrieve
+		if (!validateForm(sheetObj, formObj, sAction)) return;
 		formObj.f_cmd.value = MULTI;
 		//	perform the save after receiving the corresponding action
 		sheetObj.DoSave("Practice1GS.do", FormQueryString(formObj));
@@ -201,12 +204,17 @@ function sheet1_OnSearchEnd(sheetObj, Code, Msg, StCode, StMsg) {
  	ComOpenWait(false);
 }
 
-
-function validateForm(sheetObj, formObj, sAction) {
-	
-	
-	sheetObj.ShowDebugMsg(false);
-	
+//Handling validate
+function validateForm(sheetObj,formObj,sAction){
+	var regrex = new RegExp("^[A-Z]{3}[0-9]{5}$");
+	for (var i = sheetObj.HeaderRows(); i <= sheetObj.LastRow(); i++){
+		if (sheetObj.GetCellValue(i, "ibflag") == 'I' && !regrex.test(sheetObj.GetCellValue(i,"err_msg_cd"))){
+			//ComShowMessage('Invalid ErrMsgCd: ErrMsgCd 8 characters are required, the first 3 characters are uppercase letters, the last 5 characters are numbers.');
+			ComShowCodeMessage("COM131302", "Message Code");
+			return false;
+		}
+	}
+	return true;
 }
 //	declare function onsaveend
 function sheet1_OnSaveEnd(Code,Msg) {
@@ -222,7 +230,7 @@ function sheet1_OnSaveEnd(Code,Msg) {
 		alert('Fail to save');
 		}
 }
-//	main function declaration
+//	main function declaration constructor
     function PRACTICE1() {
     	this.processButtonClick		= tprocessButtonClick;
     	this.setSheetObject 		= setSheetObject;
