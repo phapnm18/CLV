@@ -1,3 +1,14 @@
+/*=========================================================
+*Copyright(c) 2022 CyberLogitec
+*@FileName : Practice4SC.java
+*@FileTitle : Carrier Management
+*Open Issues :
+*Change history :
+*@LastModifyDate : 2022.06.08
+*@LastModifier : NguyenMinhPhap
+*@LastVersion : 1.0
+* 1.0 Creation
+=========================================================*/
 package com.clt.apps.opus.practice4;
 
 import java.util.List;
@@ -28,10 +39,21 @@ import com.clt.framework.support.controller.html.FormCommand;
 import com.clt.framework.support.layer.service.ServiceCommandSupport;
 import com.clt.framework.support.view.signon.SignOnUserAccount;
 
+/**
+ * ALPS-Carrier Business Logic ServiceCommand - ALPS-Carrier process business transactions.
+ * 
+ * @author Nguyen Minh Phap
+ * @see CarrierDBDAO
+ * @since J2EE 1.6
+ */
 public class Practice4SC extends ServiceCommandSupport {
 	// Login User Information
 	private SignOnUserAccount account = null;
 
+	/**
+	 * Practice4 Start the work scenario.
+	 * Creating related internal objects when calling a business scenario.
+	 */
 	public void doStart() {
 		log.debug("Practice4SC 시작");
 		try {
@@ -42,10 +64,21 @@ public class Practice4SC extends ServiceCommandSupport {
 		}
 	}
 
+	/**
+	 * Practice4 system Closing the work scenario
+	 * Release related internal objects at the end of the business scenario
+	 */
 	public void doEnd() {
 		log.debug("Practice4SC 종료");
 	}
 
+	/**
+	 * This is a method that divides tasks by different actions
+	 * 
+	 * @param e Event
+	 * @return EventResponse
+	 * @exception EventException
+	 */
 	public EventResponse perform(Event e) throws EventException {
 		// RDTO(Data Transfer Object including Parameters)
 		EventResponse eventResponse = null;
@@ -80,6 +113,13 @@ public class Practice4SC extends ServiceCommandSupport {
 		return eventResponse;
 	}
 
+	/**
+	 * This method for initial data
+	 * 
+	 * @param Event e
+	 * @return EventResponse
+	 * @exception EventException
+	 */
 	private EventResponse initData() throws EventException {
 		// PDTO(Data Transfer Objng Parameters)
 		GeneralEventResponse eventResponse = new GeneralEventResponse();
@@ -119,7 +159,13 @@ public class Practice4SC extends ServiceCommandSupport {
 		return eventResponse;
 
 	}
-
+	/**
+	 * This is a method search a list data on Grid.
+	 * 
+	 * @param Event e
+	 * @return EventResponse
+	 * @exception EventException
+	 */
 	private EventResponse searchCarrier(Event e) throws EventException {
 		// PDTO(Data Transfer Object including Parameters)
 		GeneralEventResponse eventResponse = new GeneralEventResponse();
@@ -137,6 +183,13 @@ public class Practice4SC extends ServiceCommandSupport {
 		return eventResponse;
 	}
 
+	/**
+	 * This is a method search a list data on combo.
+	 * 
+	 * @param Event e
+	 * @return EventResponse
+	 * @exception EventException
+	 */
 	private EventResponse searchCarrierCombo(Event e) throws EventException {
 		// PDTO(Data Transfer Object including Parameters)
 		GeneralEventResponse eventResponse = new GeneralEventResponse();
@@ -154,6 +207,13 @@ public class Practice4SC extends ServiceCommandSupport {
 		return eventResponse;
 	}
 
+	/**
+	 *This is a method make actions(save,modify,remove). 
+	 *
+	 * @param Event e
+	 * @return EventResponse
+	 * @exception EventException
+	 */
 	private EventResponse manageCarrier(Event e) throws EventException {
 		// PDTO(Data Transfer Object including Parameters)
 		GeneralEventResponse eventResponse = new GeneralEventResponse();
@@ -174,6 +234,14 @@ public class Practice4SC extends ServiceCommandSupport {
 		return eventResponse;
 	}
 	
+	
+	/**
+	 * this method for checking duplicate data
+	 * 
+	 * @param Event e
+	 * @return EventResponse
+	 * @exception EventException
+	 */
 	private EventResponse checkDuplicate(Event e) throws EventException {
 		// PDTO(Data Transfer Object including Parameters)
 		GeneralEventResponse eventResponse = new GeneralEventResponse();

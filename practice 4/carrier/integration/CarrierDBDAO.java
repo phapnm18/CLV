@@ -1,3 +1,14 @@
+/*=========================================================
+*Copyright(c) 2022 CyberLogitec
+*@FileName : CarrieRDBDAO.java
+*@FileTitle : Carrier Management
+*Open Issues :
+*Change history :
+*@LastModifyDate : 2022.06.08
+*@LastModifier : NguyenMinhPhap
+*@LastVersion : 1.0
+* 1.0 Creation
+=========================================================*/
 package com.clt.apps.opus.practice4.integration;
 
 import java.sql.SQLException;
@@ -17,15 +28,26 @@ import com.clt.framework.support.db.ISQLTemplate;
 import com.clt.framework.support.db.RowSetUtil;
 import com.clt.framework.support.db.SQLExecuter;
 import com.clt.framework.support.layer.integration.DBDAOSupport;
-
+/**
+ * @author Nguyen Minh Phap
+ * @see CarrierBCImpl
+ * @since J2EE 1.6
+ */
 public class CarrierDBDAO extends DBDAOSupport{
-
+	/**
+	 * This method search list data for Grid.
+	 * 
+	 * @param CarrierVO carrierVO
+	 * @return List<CarrierVO>
+	 * @exception DAOException
+	 */
 	@SuppressWarnings("unchecked")
 	public List<CarrierVO> searchCarrier(CarrierVO carrierVO) throws DAOException{
 		DBRowSet dbRowset = null;
 		List<CarrierVO> list = new ArrayList();
-		
+		//query parameter
 		Map<String, Object> param = new HashMap<String, Object>();
+		//velocity parameter
 		Map<String, Object> velParam = new HashMap<String, Object>();
 	
 		try{
@@ -58,6 +80,13 @@ public class CarrierDBDAO extends DBDAOSupport{
 		return list;
 	}
 	
+	/**
+	 * this method for searching Carrier Code list
+	 * 
+	 * @param CarrierVO carrierVO
+	 * @return List<CarrierVO>
+	 * @exception DAOException
+	 */
 	@SuppressWarnings("unchecked")
 	public List<CarrierVO> searchCarrierCombo()throws DAOException {
 		DBRowSet dbRowset = null;
@@ -76,12 +105,20 @@ public class CarrierDBDAO extends DBDAOSupport{
 		return list;
 	}
 	
+	/**
+	 * this method for searching RLane Code list, it's used drop down list
+	 * 
+	 * @param CarrierVO carrierVO
+	 * @return List<CarrierVO>
+	 * @exception DAOException
+	 */
 	@SuppressWarnings("unchecked")
 	public List<CarrierVO> searchRLaneCombo()throws DAOException {
 		DBRowSet dbRowset = null;
 		List<CarrierVO> list = new ArrayList();
-		
+		//query parameter
 		Map<String, Object> param = new HashMap<String, Object>();
+		//velocity parameter
 		Map<String, Object> velParam = new HashMap<String, Object>();
 		try{	
 			dbRowset = new SQLExecuter("").executeQuery((ISQLTemplate)new CarrierDBDAORLaneComboVORSQL(), null, null);
@@ -97,7 +134,13 @@ public class CarrierDBDAO extends DBDAOSupport{
 		
 		return list;
 	}
-	
+	/**
+	 * This is a method make action insert data.
+	 * @param List<CarrierVO> carrierVO
+	 * @return intCnt[]
+	 * @exception DAOException
+	 * @exception Exception
+	 */
 	public int[] addManageCarrier(List<CarrierVO> carrierVO) throws DAOException,Exception {
 		int insCnt[] = null;
 		try {
@@ -119,6 +162,14 @@ public class CarrierDBDAO extends DBDAOSupport{
 		return insCnt;
 	}
 	
+	/**
+	 * This is a method make action remove data.
+	 * 
+	 * @param List<CarrierVO> carrierVO
+	 * @return delCnt[]
+	 * @exception DAOException
+	 * @exception Exception
+	 */
 	public int[] deleteManageCarrier(List<CarrierVO> carrierVO) throws DAOException,Exception {
 		int delCnt[] = null;
 		try {
@@ -140,6 +191,14 @@ public class CarrierDBDAO extends DBDAOSupport{
 		return delCnt;
 	}
 	
+	/**
+	 * This is a method make action modify data.
+	 * 
+	 * @param List<CarrierVO> carrierVO
+	 * @return delCnt
+	 * @exception DAOException
+	 * @exception Exception
+	 */
 	public int[] updateManageCarrier(List<CarrierVO> carrierVO) throws DAOException,Exception {
 		int delCnt[] = null;
 		try {
@@ -161,6 +220,13 @@ public class CarrierDBDAO extends DBDAOSupport{
 		return delCnt;
 	}
 
+	/**
+	 * this method for searching Customer Code list, it's used drop down list
+	 * 
+	 * @param CarrierVO carrierVO
+	 * @return List<CarrierVO>
+	 * @exception DAOException
+	 */
 	@SuppressWarnings("unchecked")
 	public List<CustomerVO> searchCustomer(CustomerVO customerVO) throws DAOException {
 		DBRowSet dbRowset = null;
@@ -187,7 +253,14 @@ public class CarrierDBDAO extends DBDAOSupport{
 		}
 		return list;
 	}
-
+	
+	/**
+	 * this method for searching Check duplicate list
+	 * 
+	 * @param CarrierVO carrierVO
+	 * @return List<CarrierVO>
+	 * @exception DAOException
+	 */
 	public int checkDuplicate(CarrierVO carrierVO)throws DAOException {
 		DBRowSet dbRowset = null;
 		Map<String, Object> param = new HashMap<String, Object>();
