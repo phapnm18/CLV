@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqls>
+	<querys>
+		<query name="CustomerDBDAOCustomerVORSQL">
+			<desc><![CDATA[Select]]></desc>
+			<sql><![CDATA[
+SELECT
+    mdm_customer.cust_cnt_cd,
+    mdm_customer.cust_seq,
+    mdm_customer.cust_lgl_eng_nm,
+    mdm_customer.cust_abbr_nm,
+    mdm_customer.ofc_cd,
+    mdm_customer.loc_cd
+FROM
+    mdm_customer
+where 1 = 1
+#if (${cust_cnt_cd} != '')
+AND mdm_customer.cust_cnt_cd LIKE '%'||UPPER(@[cust_cnt_cd])||'%'
+#end
+#if (${cust_seq} != '')
+AND UPPER(mdm_customer.cust_seq) LIKE '%'||@[cust_seq]||'%'
+#end			]]></sql>
+			<params>
+				<param name="cust_cnt_cd" type="12" value="" out="N"/>
+				<param name="cust_seq" type="12" value="" out="N"/>
+			</params>
+		</query>
+	</querys>
+</sqls>
