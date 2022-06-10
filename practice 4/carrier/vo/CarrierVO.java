@@ -28,8 +28,8 @@ import com.clt.framework.component.common.AbstractValueObject;
 import com.clt.framework.component.util.JSPUtil;
 
 /**
- * Table Value Ojbect<br>
- * 관련 Event 에서 생성, 서버실행요청시 Data 전달역할을 수행하는 Value Object
+ * Table Value Object<br>
+ * Value object that is created in the related event and performs the role of data delivery when requesting server execution
  *
  * @author 
  * @since J2EE 1.6
@@ -73,10 +73,10 @@ public class CarrierVO extends AbstractValueObject {
 	/* Column Info */
 	private String creDtTo = null;
 
-	/*	테이블 컬럼의 값을 저장하는 Hashtable */
+	/*	Hashtable to store values of table columns */
 	private HashMap<String, String> hashColumns = new LinkedHashMap<String, String>();
 
-	/*	테이블 컬럼에 대응되는 멤버변수를 저장하는 Hashtable */
+	/*	Hashtable that stores member variables corresponding to table columns */
 	private HashMap<String, String> hashFields = new LinkedHashMap<String, String>();
 	
 	public CarrierVO() {}
@@ -100,7 +100,7 @@ public class CarrierVO extends AbstractValueObject {
 	}
 	
 	/**
-	 * 테이블 컬럼에 저장할 값을 Hashtable<"column_name", "value"> 로 반환
+	 * Returns the value to be stored in the table column as Hashtable<"column_name", "value">
 	 * @return HashMap
 	 */
 	public HashMap<String, String> getColumnValues(){
@@ -123,7 +123,7 @@ public class CarrierVO extends AbstractValueObject {
 	}
 	
 	/**
-	 * 컬럼명에 대응되는 멤버변수명을 저장하여 Hashtable<"column_name", "variable"> 로 반환   
+	 * Stores member variable names corresponding to column names and returns them as Hashtable<"column_name", "variable">   
 	 * @return
 	 */
 	public HashMap<String, String> getFieldNames(){
@@ -394,7 +394,7 @@ public class CarrierVO extends AbstractValueObject {
 	}
 
 	/**
-	 * Request 의 데이터를 추출하여 VO 의 멤버변수에 설정.
+	 * Extract the request data and set it in the member variable of VO.
 	 * @param request
 	 */
 	public void fromRequest(HttpServletRequest request, String prefix) {
@@ -416,7 +416,7 @@ public class CarrierVO extends AbstractValueObject {
 	}
 
 	/**
-	 * Request 의 데이터를 VO 배열로 변환하여 반환.
+	 * Converts Request data to VO array and returns it.
 	 * @param request
 	 * @return CarrierVO[]
 	 */
@@ -425,7 +425,7 @@ public class CarrierVO extends AbstractValueObject {
 	}
 
 	/**
-	 * Request 넘어온 여러 건 DATA를 VO Class 에 담는다. 
+	 * Several requests passed over are DATA in VO Class. 
 	 * @param request
 	 * @param prefix
 	 * @return CarrierVO[]
@@ -498,7 +498,7 @@ public class CarrierVO extends AbstractValueObject {
 	}
 
 	/**
-	 * VO 배열을 반환
+	 * return VO array
 	 * @return CarrierVO[]
 	 */
 	public CarrierVO[] getCarrierVOs(){
@@ -507,7 +507,7 @@ public class CarrierVO extends AbstractValueObject {
 	}
 	
 	/**
-	 * VO Class의 내용을 String으로 변환
+	 * Convert the contents of VO Class to String
 	 */
 	public String toString() {
 		   return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE );
@@ -516,7 +516,7 @@ public class CarrierVO extends AbstractValueObject {
 	
 
 	/**
-	* 포맷팅된 문자열에서 특수문자 제거("-","/",",",":")
+	* Remove special characters from formatted string ("-","/",",",":")
 	*/
 	public void unDataFormat(){
 		this.updDt = this.updDt .replaceAll(",", "").replaceAll("-", "").replaceAll("/", "").replaceAll(":", "");
